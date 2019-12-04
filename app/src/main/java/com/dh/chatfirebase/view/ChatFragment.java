@@ -16,17 +16,16 @@ import com.dh.chatfirebase.controller.ChatController;
 import com.dh.chatfirebase.model.Chat;
 import com.dh.chatfirebase.util.ResultListener;
 
-import java.util.Arrays;
 import java.util.List;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RecyclerFragment extends Fragment {
+public class ChatFragment extends Fragment {
 
 
-    public RecyclerFragment() {
+    public ChatFragment() {
         // Required empty public constructor
     }
 
@@ -35,7 +34,7 @@ public class RecyclerFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_recycler, container, false);
+        View view = inflater.inflate(R.layout.fragment_chat, container, false);
         final RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
 
         ChatController chatController = new ChatController();

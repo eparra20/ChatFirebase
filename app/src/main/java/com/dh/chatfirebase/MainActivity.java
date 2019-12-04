@@ -6,7 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 
-import com.dh.chatfirebase.view.RecyclerFragment;
+import com.dh.chatfirebase.view.ChatFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private void pegarFragmentRecycler() {
         FragmentManager supportFragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = supportFragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.contenedorFragment,new RecyclerFragment()).commit();
+        fragmentTransaction.replace(R.id.contenedorFragment,new ChatFragment()).commit();
     }
 }
