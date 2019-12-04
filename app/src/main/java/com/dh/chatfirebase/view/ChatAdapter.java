@@ -13,6 +13,9 @@ import com.dh.chatfirebase.model.Chat;
 
 import java.util.List;
 
+import static com.dh.chatfirebase.model.Chat.TIPO_EMISOR;
+import static com.dh.chatfirebase.model.Chat.TIPO_RECEPTOR;
+
 public class ChatAdapter extends RecyclerView.Adapter {
 
     private List<Chat> chatList;
@@ -21,20 +24,48 @@ public class ChatAdapter extends RecyclerView.Adapter {
         this.chatList = chatList;
     }
 
+
+    @Override
+    public int getItemViewType(int position) {
+        return this.chatList.get(position).getTipo();
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        View view = layoutInflater.inflate(R.layout.celda_chat_emisor, parent, false);
-        return new ChatViewHolder(view);
+        View view = null;
+
+        switch (viewType) {
+            case TIPO_EMISOR:
+                view = layoutInflater.inflate(R.layout.celda_chat_emisor, parent, false);
+                return new ChatEmisorViewHolder(view);
+            case TIPO_RECEPTOR:
+                view = layoutInflater.inflate(R.layout.celda_chat_receptor, parent, false);
+                return new ChatReceptorViewHolder(view);
+        }
+
+        return null;
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Chat chat = this.chatList.get(position);
-        ChatViewHolder chatViewHolder = (ChatViewHolder) holder;
-        chatViewHolder.bind(chat);
+
+        switch (chat.getTipo()){
+            case TIPO_EMISOR:
+                ChatEmisorViewHolder chatEmisorViewHolder = (ChatEmisorViewHolder) holder;
+                chatEmisorViewHolder.onBind(chat);
+                break;
+            case TIPO_RECEPTOR:
+                ChatReceptorViewHolder chatReceptorViewHolder = (ChatReceptorViewHolder) holder;
+                chatReceptorViewHolder.bind(chat);
+                break;
+        }
+
+
+
     }
 
     @Override
@@ -42,17 +73,30 @@ public class ChatAdapter extends RecyclerView.Adapter {
         return this.chatList.size();
     }
 
-    class ChatViewHolder extends RecyclerView.ViewHolder{
+    class ChatReceptorViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView textViewMensaje;
+        private TextView textViewMensajeReceptor;
 
-        public ChatViewHolder(@NonNull View itemView) {
+        public ChatReceptorViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.textViewMensaje = itemView.findViewById(R.id.textViewMensaje);
+            this.textViewMensajeReceptor = itemView.findViewById(R.id.textViewMensajeReceptor);
         }
 
-        public void bind(Chat chat){
-            this.textViewMensaje.setText(chat.getMensaje());
+        public void bind(Chat chat) {
+            this.textViewMensajeReceptor.setText(chat.getMensaje());
+        }
+    }
+
+    class ChatEmisorViewHolder extends RecyclerView.ViewHolder {
+        private TextView textViewMensajeEmisor;
+
+        public ChatEmisorViewHolder(@NonNull View itemView) {
+            super(itemView);
+            this.textViewMensajeEmisor = itemView.findViewById(R.id.textViewMensajeEmisor);
+        }
+
+        public void onBind(Chat chat) {
+            this.textViewMensajeEmisor.setText(chat.getMensaje());
         }
     }
 

@@ -19,7 +19,7 @@
             android:textAlignment="textEnd"
             android:text="Hola, Soy Eduardo del curso de mobile Android de digital House"
             android:textSize="15sp"
-            android:id="@+id/textViewMensaje"/>
+            android:id="@+id/textViewMensajeEmisor"/>
 
     </androidx.cardview.widget.CardView>
 </FrameLayout>

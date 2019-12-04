@@ -5,15 +5,19 @@ public class Chat {
     private String mensaje;
     private String receptor;
     private String emisor;
-    private String tipo;
+    private Integer tipo;
+
+    public  final static  int TIPO_EMISOR = 1;
+    public final static int TIPO_RECEPTOR = 2;
 
     public Chat() {
     }
 
-    public Chat(String mensaje, String receptor, String emisor) {
+    public Chat(String mensaje, String receptor, String emisor,Integer tipo) {
         this.mensaje = mensaje;
         this.receptor = receptor;
         this.emisor = emisor;
+        this.tipo = tipo;
     }
 
     public String getMensaje() {
@@ -40,11 +44,11 @@ public class Chat {
         this.emisor = emisor;
     }
 
-    public String getTipo() {
+    public Integer getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Integer tipo) {
         this.tipo = tipo;
     }
 }
