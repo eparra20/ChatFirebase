@@ -25,6 +25,11 @@ public class ChatAdapter extends RecyclerView.Adapter {
     }
 
 
+    public void setChatList(List<Chat> chatList) {
+        this.chatList = chatList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemViewType(int position) {
         return this.chatList.get(position).getTipo();
